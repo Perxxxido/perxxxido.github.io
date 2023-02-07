@@ -1,7 +1,11 @@
 <style>
-  html {background-color: #000;}
+  html {background-color: #00092B;}
   [href="https://perxxxido.tk/"] {display: none;}
+  .markdown-body {
+    background-color: #00092B;
+    color: #fafafa;
+  }
 </style>
-### На этом сайте ничего нет, кроме некоторых ссылок
+# На этом сайте ничего нет, кроме некоторых ссылок
 
-* [Файл модификации "Time-S"](time-s.css)
+* [Модификация "Time-S"](time-s)
