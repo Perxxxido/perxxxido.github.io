@@ -3,13 +3,13 @@
 	p, xmp, span, a, u, b, i, s {font-size: 11pt;}
 	[main] {
 		display: grid;
-		grid-template-columns: 1fr 2fr;
+		grid-template-columns: 1fr 1fr;
 	}
 }
 
 @media (min-width: 720px) {
-	h1 {font-size: 24pt;}
-	p, xmp, span, a, u, b, i, s {font-size: 14pt;}
+	h1 {font-size: 22pt;}
+	p, xmp, span, a, u, b, i, s {font-size: 12pt;}
 	[main] {
 		display: grid;
 		grid-template-columns: 1fr 3fr;
@@ -17,8 +17,8 @@
 }
 
 @media (min-width: 1080px) {
-	h1 {font-size: 36pt;}
-	p, xmp, span, a, u, b, i, s {font-size: 18pt;}
+	h1 {font-size: 24pt;}
+	p, xmp, span, a, u, b, i, s {font-size: 12pt;}
 	[main] {
 		display: grid;
 		grid-template-columns: 1fr 7fr;
