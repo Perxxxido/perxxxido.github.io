@@ -19,6 +19,10 @@ a {
 	border-radius: 20px;
 }
 
+[blucks] {
+	grid-template-columns: 1fr 1fr;
+}
+
 body {
 	background: linear-gradient(45deg, #000000, #505050, #fdfdfd);
 	background-size: 500% 500%;
