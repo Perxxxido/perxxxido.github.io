@@ -3,6 +3,7 @@
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: 1500%;
+		height: 100vh;
 	}
 }
 @media (min-width: 720px) {
@@ -10,6 +11,7 @@
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: 750%;
+		height: 100vh;
 	}
 }
 @media (min-width: 1080px) {
@@ -17,5 +19,6 @@
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: 125%;
+		height: 100vh;
 	}
 }
