@@ -14,16 +14,13 @@
 			function set_background_image() {
 				let ran = rand();
 				if(ran == 0) {
-					document.body.style.backgroundImage = "url('img/0.jpg')";
-					document.getElementById("sfa").innerHTML = "body {background-position: center;background-repeat: no-repeat;background-size: 250%;height: 100vh;margin: 0;padding: 0;box-sizing: border-box;}";
+					document.body.style.background = "linear-gradient(90deg, #3300ff, #ff0033)";
 				}
 				if(ran == 1) {
-					document.body.style.backgroundImage = "url('img/1.jpg')";
-					document.getElementById("sfa").innerHTML = "body {background-position: center;background-repeat: no-repeat;background-size: 300%;height: 100vh;margin: 0;padding: 0;box-sizing: border-box;}";
+					document.body.style.background = "url('img/1.jpg')";
 				}
 				if(ran == 2) {
-					document.body.style.backgroundImage = "url('img/2.jpg')";
-					document.getElementById("sfa").innerHTML = "body {background-position: center;background-repeat: no-repeat;background-size: 400%;height: 100vh;margin: 0;padding: 0;box-sizing: border-box;}";
+					document.body.style.background = "url('img/2.jpg')";
 				}
 
 				console.log(ran);
