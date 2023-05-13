@@ -15,12 +15,15 @@
 				let ran = rand();
 				if(ran == 0) {
 					document.body.style.backgroundImage = "url('img/0.jpg')";
+					document.getElementById("sfa").innerHTML = "body {background-position: center;background-repeat: no-repeat;background-size: 160%;height: 100vh;margin: 0;padding: 0;box-sizing: border-box;}";
 				}
 				if(ran == 1) {
 					document.body.style.backgroundImage = "url('img/1.jpg')";
+					document.getElementById("sfa").innerHTML = "body {background-position: center;background-repeat: no-repeat;background-size: 800%;height: 100vh;margin: 0;padding: 0;box-sizing: border-box;}";
 				}
 				if(ran == 2) {
 					document.body.style.backgroundImage = "url('img/2.jpg')";
+					document.getElementById("sfa").innerHTML = "body {background-position: center;background-repeat: no-repeat;background-size: 1200%;height: 100vh;margin: 0;padding: 0;box-sizing: border-box;}";
 				}
 
 				console.log(ran);
@@ -39,6 +42,10 @@
 		<link rel="shortcut icon" href="https://perxxxido.tk/img/icon.png">
 		<style>
 			@import url("https://perxxxido.tk/time-s.css");
+			/*@import url("css/adaptive.css");*/
+		</style>
+		<style id="sfa">
+			
 		</style>
 		<style>
 			.glass {
@@ -148,8 +155,6 @@
 			[spoiler]:hover {
 				filter: blur(0px);
 			}
-
-			@import url("css/adaptive.css");
 		</style>
 	</head>
 	<body w>
