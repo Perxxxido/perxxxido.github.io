@@ -4,6 +4,9 @@
 		background-repeat: no-repeat;
 		background-size: 1500%;
 		height: 100vh;
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
 	}
 }
 @media (min-width: 720px) {
@@ -12,6 +15,9 @@
 		background-repeat: no-repeat;
 		background-size: 750%;
 		height: 100vh;
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
 	}
 }
 @media (min-width: 1080px) {
@@ -20,5 +26,8 @@
 		background-repeat: no-repeat;
 		background-size: 125%;
 		height: 100vh;
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
 	}
 }
