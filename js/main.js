@@ -4,7 +4,7 @@ window.onload = function() {
 };
 
 function rand() {
-  return Math.floor(Math.random() *5);
+  return Math.floor(Math.random() *3);
 }
 function set_background_image() {
   let ran = rand();
@@ -13,7 +13,7 @@ function set_background_image() {
     document.body.style.background = "radial-gradient(circle at 50% 0%, #3300ff, #330066)";
   }
   if(ran == 1) {
-    document.body.style.background = "radial-gradient(circle at 50% 0%, #990033, #990033)";
+    document.body.style.background = "radial-gradient(circle at 50% 0%, #990033, #993333)";
   }
   if(ran == 2) {
     document.body.style.background = "radial-gradient(circle at 50% 0%, #339933, #006600)";
