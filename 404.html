@@ -1,33 +1,243 @@
+<!Doctype HTML>
 <html>
 	<head>
-		<meta charset="utf-8" />
-		<title>Perxxxido | 404</title>
-		<link rel="shortcut icon" href="img/icon.png">
+		<title>Perxxxido | Erorr 404</title>
+		<script>
+			window.onload = function() {
+				document.getElementById("llinks").innerHTML = "<a w a href='javascript:set_background_image();'>Поменять фон</a> <a w a href='https://perxxxido.ru'>Главная</a>";
+				set_background_image();
+			};
+
+			function rand() {
+				return Math.floor(Math.random() *4);
+			}
+			function set_background_image() {
+				let ran = rand();
+				/*document.body.style.background = "radial-gradient(circle at 50% 0%, hsv(280°, 85%, 70%), hsv(260°, 85%, 50%))";*/
+				
+				if(ran == 0) {
+					document.body.style.background = "radial-gradient(circle at 50% 0%, #3300ff, #330066)";
+				}
+				if(ran == 1) {
+					document.body.style.background = "radial-gradient(circle at 50% 0%, #ff0033, #660033)";
+				}
+				if(ran == 2) {
+					document.body.style.background = "radial-gradient(circle at 50% 0%, #00ff33, #006633)";
+				}
+				if(ran == 3) {
+					document.body.style.background = "radial-gradient(circle at 50% 0%, #33ff00, #663300)";
+				}
+
+				console.log(ran);
+			}
+		</script>
+
+		<noscript>
+			<style>
+				body {
+					background-color: rgb(20, 20, 125);
+				}
+			</style>
+		</noscript>
+
+		<meta charset="utf-8">
+		<link rel="shortcut icon" href="https://perxxxido.tk/img/icon.png">
 		<style>
-			@import url("https://perxxxido.github.io/time-s.css");
-			@import url("https://perxxxido.tk/css/main.css");
-			@import url("https://perxxxido.tk/css/adaptive.css");
+			@import url("https://perxxxido.tk/time-s.css");
+			/*@import url("css/adaptive.css");*/
+		</style>
+		<style id="sfa">
+			body {background-position: center;background-repeat: no-repeat;background-size: 400%;height: 100vh;margin: 0;padding: 0;box-sizing: border-box;}
+		</style>
+		<style>
+			.glass {
+				z-index: calc(999999999999*999999999999);
+				width: 100%;
+				height: 100px;
+				backdrop-filter: blur(20px);
+				border-bottom-right-radius: 25px;
+				border-bottom-left-radius: 25px;
+				background: rgba(0, 0, 0, 0.3);
+				box-shadow: 0 10px 26px 0 rgba(0, 0, 0, 0.5);
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				/*align-items: center;*/
+				/*justify-content: center;*/
+
+				position: fixed;
+				top: -85px;
+
+				transition: 300ms ease-in-out;
+			}
+
+			.glass:hover {
+				top: 0px;
+			}
+
+			[img] {
+				margin: 0 0 0 15px;
+			}
+
+			[a] {
+				margin: 0 30px 0 0;
+			}
+
+			[p] {
+				margin-left: 15px;
+			}
+
+			[links] {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+			}
+
+			[content] {
+				display: flex;
+				justify-content: center;
+				background: rgba(0, 0, 0, 0.5);
+				box-shadow: 0 5px 13px 0 rgba(0, 0, 0, 0.5);
+				backdrop-filter: blur(20px);
+				margin: 15px;
+				border-radius: 25px;
+
+				transition: 100ms ease-in-out;
+			}
+
+			[content]:hover {
+				background: rgba(0, 0, 0, 0.55);
+				box-shadow: 0 10px 26px 0 rgba(0, 0, 0, 0.5);
+			}
+
+			.left {
+				display: flex;
+				align-items: center;
+				justify-content: left;
+			}
+			.right {
+				display: flex;
+				align-items: center;
+				justify-content: right;
+			}
+
+			[block] {
+				display: flex;
+				width: 100%;
+				justify-content: center;
+				margin-top: 15px;
+			}
+
+			.block-l {
+				background-color: rgba(255, 255, 255, 0.5);
+				border-radius: 25px;
+				width: 90%;
+				backdrop-filter: blur(50px);
+			}
+
+			.block-b {
+				background-color: rgba(0, 0, 0, 0.5);
+				border-radius: 25px;
+				width: 90%;
+				backdrop-filter: blur(50px);
+			}
+
+			[bl] {
+				text-shadow: #fff 0px 0px 20px;
+			}
+
+			[bb] {
+				text-shadow: #000 0px 0px 20px;
+			}
+
+			[spoiler] {
+				filter: blur(200px);
+
+				transition: 150ms ease-in-out;
+			}
+
+			[spoiler]:hover {
+				filter: blur(0px);
+			}
 		</style>
 	</head>
-	<body bw w main>
-		<div menju c>
-			<div title>
-				<h1>Идеи:</h1>
+	<body w>
+		<div class="glass">
+			<div class="left">
+				<img img src="https://perxxxido.tk/img/icon.png" width="50px" height="50px">
+				<b p32>erxxxido.tk</b>
 			</div>
-			<iframe src="https://perxxxido.tk/links.htm" frameborder=0 width="95%" height="95%"></iframe>
-		</div>
-		<div menju>
-			<div c title>
-				<h1>Ошибка 404!</h1>
+			<div class="right" id="llinks">
+				<a w a href="https://perxxxido.tk">Главная</a>
 			</div>
-			<p>Возможно:<br><br>
-			1. В URL, написаном Вами есть назначительная ошибка, которая и повлеяла на текущий исход событий.<br>
-			2. Вас попытались нае... и теперь вы тут.<br>
-			3. Ваш брат/сестра опять заигрались с чёрной магией ночью и теперь волшебным образом с этого сайта исчезла нужная вам страница.<br><div><hr></div><br>
-			Вы можете сделать одно из 3-х действий:<br><br>
-			1. Использовать левую (Возможно она не слева или её вообще нет) панель с ссылками.<br>
-			2. Написать мне на почту <a href="mailto:perxxxido@gmail.com">perxxxido@gmail.com</a> (или <a href="mailto:perxxxido@yandex.ru">perxxxido@yandex.ru</a>) или позвонить по телефону <a href="tel:89525211129">8 (952) 521-11-29</a>.<br>
-			3. Удариться головой об стену.</p>
 		</div>
+
+		<!--div block>
+			<div class="block-l">
+				<h1 c p32>Разделы сайта</h1>
+				<div links>
+					<div content p14>
+						<p>Музыка</p>
+					</div>
+					<div content p14>
+						<p>Текста</p>
+					</div>
+					<div content p14>
+						<p>Идеи</p>
+					</div>
+					<div content p14>
+						<p>Рефиралки</p>
+					</div>
+				</div>
+			</div>
+		</div-->
+
+		<!--div block>
+			<div class="block-l">
+				<h1 c bb p32>Что это за сайт?</h1>
+				<p p p14>На этом сайте я рассказываю, как создать свой сайт с нуля!</p>
+			</div>
+		</div-->
+
+		<div block>
+			<div class="block-b">
+				<h1 c bl p32>Ошибка 404!</h1>
+				<p p p14>Возможно ваш брат или ваша систра вчера ночью заигрались с чёрной магией и теперь запрашиваемой вами страницы нет.</p>
+			</div>
+		</div>
+		
+		<div block>
+			<div class="block-b">
+				<h1 c bl p32>Свяжитесь со мной по этому поводу!</h1>
+				<p p p14>E-Mail: <a a w target="new" href="mailto:perxxxido@gmail.com">perxxxido@gmail.com</a><br>
+				Telegram: <a a w target="new" href="https://t.me/perxxxido">@perxxxido</a><br>
+				ВКонтакте: <a a w target="new" href="https://vk.com/perxxxido">@perxxxido</a><br>
+				Телефон: <a a w target="new" href="tel:89525211129">+7 (952) 521-11-29</a></p>
+			</div>
+		</div>
+
+<!----------------------------------------------------------------------------------------------------------------------------------->
+
+		<!-- Yandex.Metrika informer -->
+		<a spoiler href="https://metrika.yandex.ru/stat/?id=93340773&amp;from=informer"
+		target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/93340773/1_0_CCCCFFFF_CCCCFFFF_0_visits"
+		style="width:80px; height:15px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (визиты)" /></a>
+		<!-- /Yandex.Metrika informer -->
+
+		<!-- Yandex.Metrika counter -->
+		<script type="text/javascript" >
+		   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+		   m[i].l=1*new Date();
+		   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+		   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+		   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+		   ym(93340773, "init", {
+		        clickmap:true,
+		        trackLinks:true,
+		        accurateTrackBounce:true
+		   });
+		</script>
+		<noscript><div><img src="https://mc.yandex.ru/watch/93340773" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+		<!-- /Yandex.Metrika counter -->
+		
 	</body>
 </html>
