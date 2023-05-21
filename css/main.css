@@ -37,8 +37,6 @@
 [links] {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	/*background-color: rgba(0, 0, 0, 0.5);*/
-	backdrop-filter: blur(50px);
 	border-radius: 30px;
 }
 
@@ -47,7 +45,7 @@
 	justify-content: center;
 	background: rgba(0, 0, 0, 0.5);
 	box-shadow: 0 5px 13px 0 rgba(0, 0, 0, 0.5);
-	backdrop-filter: blur(20px);
+	backdrop-filter: blur(50px);
 	margin: 15px;
 	border-radius: 25px;
 
