@@ -2,36 +2,7 @@
 <html>
 	<head>
 		<title>Perxxxido | Ошибка 404!</title>
-		<script>
-			window.onload = function() {
-				document.getElementById("llinks").innerHTML = "<a w a href='javascript:set_background_image();'>Поменять фон</a> <a w a href='https://perxxxido.ru'>Главная</a>";
-				set_background_image();
-			};
-
-			function rand() {
-				return Math.floor(Math.random() *4);
-			}
-			function set_background_image() {
-				let ran = rand();
-				/*document.body.style.background = "radial-gradient(circle at 50% 0%, hsv(280°, 85%, 70%), hsv(260°, 85%, 50%))";*/
-				
-				if(ran == 0) {
-					document.body.style.background = "radial-gradient(circle at 50% 0%, #3300ff, #330066)";
-				}
-				if(ran == 1) {
-					document.body.style.background = "radial-gradient(circle at 50% 0%, #ff0033, #660033)";
-				}
-				if(ran == 2) {
-					document.body.style.background = "radial-gradient(circle at 50% 0%, #00ff33, #006633)";
-				}
-				if(ran == 3) {
-					document.body.style.background = "radial-gradient(circle at 50% 0%, #33ff00, #663300)";
-				}
-
-				console.log(ran);
-			}
-		</script>
-
+		<script scr="js/main.js"></script>
 		<noscript>
 			<style>
 				body {
