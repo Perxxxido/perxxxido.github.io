@@ -21,3 +21,4 @@ function set_background_image() {
 
   console.log(ran);
 }
+// Почему-то не работает
