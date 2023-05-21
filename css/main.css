@@ -37,7 +37,7 @@
 [links] {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	background-color: rgba(0, 0, 0, 0.5);
+	/*background-color: rgba(0, 0, 0, 0.5);*/
 	backdrop-filter: blur(50px);
 	border-radius: 30px;
 }
