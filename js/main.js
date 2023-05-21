@@ -4,7 +4,7 @@ window.onload = function() {
 };
 
 function rand() {
-  return Math.floor(Math.random() *4);
+  return Math.floor(Math.random() *5);
 }
 function set_background_image() {
   let ran = rand();
