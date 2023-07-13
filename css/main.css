@@ -105,3 +105,8 @@
 [spoiler]:hover {
 	filter: blur(0px);
 }
+
+[center] {
+	display: flex;
+	justify-content: center;
+}
