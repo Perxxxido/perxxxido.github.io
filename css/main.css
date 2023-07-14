@@ -111,9 +111,9 @@
 	justify-content: center;
 }
 
-button, [type="submit"] {
+button, input {
 	border: none;
-	background: rgba(0, 0, 0, 0.1);
-	box-shadow: 0 10px 26px 0 rgba(0, 0, 0, 0.5);
+	background: rgba(30, 0, 60, 0.9);
+	box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.5);
 	border-radius: 15px/15px;
 }
