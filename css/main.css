@@ -121,3 +121,8 @@ button, input {
 	box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.5);
 	border-radius: 15px/15px;
 }
+
+.links {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+}
