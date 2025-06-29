@@ -107,7 +107,7 @@ async function parseBinaryFile(filename) {
 
 // Пример использования
 document.addEventListener('DOMContentLoaded', () => {
-	document.querySelectorAll('bin').forEach(script => {
+	document.querySelectorAll('script[type="application/x-binary"]').forEach(script => {
 		const src = script.getAttribute('src');
 		if (src) {
 			parseBinaryFile(src);
