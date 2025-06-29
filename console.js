@@ -13,6 +13,6 @@ function watchVariable(variableName, callback, interval = 100) {
     }, interval);
 }
 
-function set(text) {
-    console.log(`%c${text}`, "color: 4af;");
-}
+watchVariable("set", (text) => {
+    console.log(`%c${text}`, "color: #4af;");
+});
