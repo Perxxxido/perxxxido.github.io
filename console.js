@@ -1,18 +1,13 @@
-function watchVariable(variableName, callback, interval = 100) {
-    const data = {};
-    const timer = setInterval(() => {
-        try {
-            if (window[variableName] !== undefined) {
-                callback(window[variableName]);
-                data[variableName] = window[variableName];
-                window[variableName] = undefined;
-            }
-        } catch (error) {
-            console.error('Ошибка при проверке переменной:', error);
-        }
-    }, interval);
+function watchVariable(name, callback, interval = 100) {
+  let data = {};
+  setInterval(() => {
+    if (window[name] !== undefined) {
+      data[name] = window[name];
+      callback(data[name]);
+      window[name] = undefined;
+    }
+  }, interval);
 }
-
 watchVariable("set", (text) => {
     console.log(`%c${text}`, "color: #4af;");
 });
