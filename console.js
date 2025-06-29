@@ -8,6 +8,4 @@ function watchVariable(name, callback, interval = 100) {
     }
   }, interval);
 }
-watchVariable("set", (text) => {
-    console.log(`%c${text}`, "color: #4af;");
-});
+watchVariable("открыть");
