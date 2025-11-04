@@ -1,4 +1,2 @@
 console.log("WORKS!");
-const h1 = document.createElement('h1');
-h1.textContent = 'Привет, мир!';
-document.body.appendChild(h1);
+document.body.innerHTML = '<h1>Привет, мир!</h1>';
