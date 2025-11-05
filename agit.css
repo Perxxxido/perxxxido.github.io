@@ -1,3 +1,13 @@
 body {
-	background: #000000;
+	background: #000;
+}
+
+@font-face {
+  font-family: 'Gothic';           /* Имя шрифта для использования в проекте */
+  src: url('gothic.ttf') format('truetype');  /* Путь к файлу и формат */
+}
+
+h1 {
+	font-family: "Gothic";
+	color: #fff;
 }
