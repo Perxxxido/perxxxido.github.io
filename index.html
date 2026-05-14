@@ -1,8 +1,42 @@
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="plain/text; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        test
+        <fieldset>
+            <legend>Транслитератор</legend>
+            <form id="translitForm">
+                <textarea style="width:100%;height:500px" type="text" name="data" id="dataTextarea"></textarea><br>
+                <input type="submit" value="Транслитерировать" />
+            </form>
+        </fieldset>
+
+        <script>
+            document.getElementById('translitForm').addEventListener('submit', async function(e) {
+                e.preventDefault(); // Отменяем отправку формы и перезагрузку страницы
+
+                const textarea = document.getElementById('dataTextarea');
+                const originalText = textarea.value;
+
+                // Отправляем данные на сервер без перезагрузки страницы
+                const formData = new FormData();
+                formData.append('data', originalText);
+
+                try {
+                    const response = await fetch('crypt.php', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const translatedText = await response.text();
+
+                    // Заменяем содержимое textarea на полученный результат
+                    textarea.value = translatedText;
+                } catch (error) {
+                    console.error('Ошибка:', error);
+                    alert('Произошла ошибка при транслитерации');
+                }
+            });
+        </script>
     </body>
 </html>
