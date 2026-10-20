@@ -18,6 +18,8 @@
 				background: #255;
 				color: #fff;
 				font-family: sans-serif;
+				line-height: 1.5;
+				letter-spacing: 0.5px;
 
 				display: flex;
 				flex-direction: column;
@@ -75,7 +77,7 @@
 			.content {
 				width: 75%;
 				margin-top: 20px;
-				padding-bottom: 40px;
+				/* padding-bottom: 40px; */
 			}
 
 			/* --- ПОДЗАГОЛОВОК --- */
@@ -102,6 +104,16 @@
 				border: 1px solid #3a6b6b;
 
 				width: 100%;
+			}
+
+			.card img {
+				border-radius: 20px;
+
+				width: 100%;
+			}
+
+			.card p {
+				margin-top: 10px;
 			}
 
 			/* --- МЕДИА-ЗАПРОСЫ --- */
@@ -181,13 +193,29 @@
         </div>
 		<div class="content">
 			<div class="cardholder">
+				<div class="card">
+					<img src="https://avatars.mds.yandex.net/i?id=74f63fd7df35b1831f84e0c635405d58_l-9270532-images-thumbs&n=13" />
+					<p><b>Леонид Эдуардович Маковский</b> - куратор студенческого сообщества.</p>
+				</div>
+				<div class="card">Фото 2</div>
+				<div class="card">Фото 3</div>
+				<div class="card">Фото 4</div>
+				<div class="card">Фото 5</div>
+			</div>
+			<hr>
+		</div>
+
+		<div class="title">
+            <h2>Педагогический состав:</h2>
+        </div>
+		<div class="content">
+			<div class="cardholder">
 				<div class="card">Фото 1</div>
 				<div class="card">Фото 2</div>
 				<div class="card">Фото 3</div>
 				<div class="card">Фото 4</div>
 				<div class="card">Фото 5</div>
 			</div>
-
 			<hr>
 		</div>
 	</body>
