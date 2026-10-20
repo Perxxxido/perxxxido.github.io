@@ -1,22 +1,194 @@
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <fieldset>
-            <legend>Приложения</legend>
-            <ul>
-                <li><a href="opros.html">Опрос</a></li>
-                <li><a href="swot.html">SWOT анализ</a></li>
-                <li><a href="market.html">Маркеплейсы</a></li>
-            </ul>
-        </fieldset>
-        <fieldset>
-            <legend>Продукт проекта</legend>
-            <ul>
-                <li><a href="produkt.pdf">Памятка для потребителей</a></li>
-            </ul>
-        </fieldset>
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Студенческий портал</title>
+		<style type="text/css">
 
-    </body>
+			/* --- ОСНОВНОЕ --- */
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				background: #255;
+				color: #fff;
+				font-family: sans-serif;
+
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				min-height: 100vh;
+			}
+
+			h1 {
+				font-size: 36px; /* Оставил один размер шрифта */
+				line-height: 1;
+			}
+
+			hr {
+				margin-top: 20px;
+			}
+
+			/* --- ШАПКА --- */
+
+			.header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+
+				background: #522;
+
+				padding: 0px 25px;
+				width: 75%;
+				height: calc(48px + 50px);
+
+				border-radius: 0px 0px 30px 30px;
+			}
+
+			.header .nav {
+				display: flex;
+				margin-left: auto;
+				gap: 25px;
+				height: 64px;
+				align-items: center;
+			}
+
+			.header .nav ul {
+				display: flex;
+				list-style: none;
+				gap: 15px;
+			}
+
+			.header .nav li {
+				cursor: pointer;
+				font-size: 16px;
+				white-space: nowrap;
+			}
+
+			/* --- КОНТЕНТ (Общая обертка) --- */
+
+			.content {
+				width: 75%;
+				margin-top: 20px;
+				padding-bottom: 40px;
+			}
+
+			/* --- ПОДЗАГОЛОВОК --- */
+
+			.title {
+				width: 75%;
+				margin-top: 20px;
+			}
+
+			/* --- СЕТКА КАРТОЧЕК (Cardholder) --- */
+
+			.cardholder {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+				gap: 20px;
+				justify-content: center;
+			}
+
+			.card {
+				background: #164040;
+				padding: 20px;
+				border-radius: 15px;
+				min-height: 200px;
+				border: 1px solid #3a6b6b;
+
+				width: 100%;
+			}
+
+			/* --- МЕДИА-ЗАПРОСЫ --- */
+
+			/* Для планшетов (ширина меньше 1024px) */
+			@media (max-width: 1024px) {
+				.header, .content, .title {
+					width: 90%;
+				}
+
+				h1 {
+					font-size: 42px;
+				}
+			}
+
+			/* Для мобильных телефонов (ширина меньше 768px) */
+			@media (max-width: 768px) {
+				.header {
+					width: 95%;
+					height: auto;
+					flex-direction: column;
+					padding: 15px;
+					gap: 15px;
+				}
+
+				.header .nav {
+					margin-left: 0;
+					height: auto;
+					flex-wrap: wrap;
+					justify-content: center;
+					gap: 15px;
+				}
+
+				.header .nav ul {
+					gap: 10px;
+				}
+
+				h1 {
+					font-size: 28px;
+					text-align: center;
+				}
+
+				.content, .title {
+					width: 95%;
+				}
+
+				.cardholder {
+					grid-template-columns: 1fr; /* На мобилках принудительно 1 колонка */
+				}
+			}
+
+			/* Для очень узких экранов (меньше 480px) */
+			@media (max-width: 480px) {
+				h1 {
+					font-size: 22px;
+				}
+				.header .nav li {
+					font-size: 14px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="header">
+			<h1>Студенческий портал</h1>
+			<div class="nav">
+				<ul>
+					<li>Проверка</li>
+					<li>Ссылка</li>
+					<li>Еще одна ссылка</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="title">
+            <h2>Педагогический состав:</h2>
+        </div>
+		<div class="content">
+			<div class="cardholder">
+				<div class="card">Фото 1</div>
+				<div class="card">Фото 2</div>
+				<div class="card">Фото 3</div>
+				<div class="card">Фото 4</div>
+				<div class="card">Фото 5</div>
+			</div>
+
+			<hr>
+		</div>
+	</body>
 </html>
