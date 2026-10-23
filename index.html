@@ -38,7 +38,7 @@
 
 			/* --- ШАПКА --- */
 
-			.header {
+			header {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
@@ -52,7 +52,7 @@
 				border-radius: 0px 0px 30px 30px;
 			}
 
-			.header .nav {
+			header .nav {
 				display: flex;
 				margin-left: auto;
 				gap: 25px;
@@ -60,13 +60,13 @@
 				align-items: center;
 			}
 
-			.header .nav ul {
+			header .nav ul {
 				display: flex;
 				list-style: none;
 				gap: 15px;
 			}
 
-			.header .nav li {
+			header .nav li {
 				cursor: pointer;
 				font-size: 16px;
 				white-space: nowrap;
@@ -124,7 +124,7 @@
 
 			/* Для планшетов (ширина меньше 1024px) */
 			@media (max-width: 1024px) {
-				.header, .content, .title {
+				header, .content, .title {
 					width: 90%;
 				}
 
@@ -135,7 +135,7 @@
 
 			/* Для мобильных телефонов (ширина меньше 768px) */
 			@media (max-width: 768px) {
-				.header {
+				header {
 					width: 95%;
 					height: auto;
 					flex-direction: column;
@@ -143,7 +143,7 @@
 					gap: 15px;
 				}
 
-				.header .nav {
+				header .nav {
 					margin-left: 0;
 					height: auto;
 					flex-wrap: wrap;
@@ -151,7 +151,7 @@
 					gap: 15px;
 				}
 
-				.header .nav ul {
+				header .nav ul {
 					gap: 10px;
 				}
 
@@ -174,23 +174,23 @@
 				h1 {
 					font-size: 22px;
 				}
-				.header .nav li {
+				header .nav li {
 					font-size: 14px;
 				}
 			}
 		</style>
 	</head>
 	<body>
-		<div class="header">
+		<header>
 			<h1>Студенческий портал</h1>
-			<div class="nav">
+			<nav>
 				<ul>
 					<li>Проверка</li>
 					<li>Ссылка</li>
 					<li>Еще одна ссылка</li>
 				</ul>
-			</div>
-		</div>
+			</nav>
+		</header>
 
 		<div class="title">
             <h2>Педагогический состав:</h2>
