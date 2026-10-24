@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        :root {
+            --fg: #f0f0f0;
+            --bg: #0f0f0f;
+        }
+
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--fg);
+        }
+
+        header {
+            width: 100%;
+            /* было height: 58px — теперь шапка может расти, когда меню открыто */
+            min-height: 58px;
+        }
+        header h1 {
+            margin: 5px 0px;
+        }
+
+        /* Блок «линии» — он же раскрывающийся контейнер.
+           Сначала он сам плавно раздвигается (0fr → 1fr),
+           и только потом внутри появляются пункты меню. */
+        .bottom-line {
+            width: 100%;
+            overflow: hidden; /* ничего не вылезает за панель */
+            transition: height 0.45s ease;
+            height: 1px;
+            background: var(--fg);
+        }
+        /* Высоту открытого блока скрипт задаёт по фактическому контенту,
+           поэтому пункты не потеряются ни на какой ширине экрана */
+
+        /* ===== Кнопка меню: «язычок», свисающий с линии ===== */
+        .menu-button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: fit-content;
+            margin: 0 auto;
+            padding: 7px 16px;
+
+            background: var(--bg);
+            color: var(--fg);
+            border: 1px solid var(--fg);
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+
+            font: inherit;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+
+            cursor: pointer;
+            transition: background 0.2s ease, opacity 0.2s ease;
+        }
+        .menu-button:hover {
+            background: #262626;
+        }
+        .menu-button:focus-visible {
+            outline: 1px dashed var(--fg);
+            outline-offset: 2px;
+        }
+
+        /* Иконка-бургер из трёх полосок */
+        .burger {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .burger span {
+            width: 18px;
+            height: 2px;
+            background: var(--fg);
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+        /* Когда меню открыто — полоски складываются в крестик */
+        .menu-button[aria-expanded="true"] .burger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .menu-button[aria-expanded="true"] .burger span:nth-child(2) { opacity: 0; }
+        .menu-button[aria-expanded="true"] .burger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+        /* ===== Навигация внутри блока линии ===== */
+        .nav {
+            min-height: 0;
+            overflow: hidden;
+            visibility: hidden;
+        }
+        .bottom-line.ready .nav {
+            visibility: visible;
+        }
+        /* Пункты появляются только когда блок уже раздвинулся */
+        .nav li {
+            opacity: 0;
+            transform: translateY(-8px);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+        .bottom-line.ready .nav li {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .bottom-line.ready .nav li:nth-child(1) { transition-delay: 0s; }
+        .bottom-line.ready .nav li:nth-child(2) { transition-delay: 0.07s; }
+        .bottom-line.ready .nav li:nth-child(3) { transition-delay: 0.14s; }
+        .bottom-line.ready .nav li:nth-child(4) { transition-delay: 0.21s; }
+        .nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px 36px;
+            padding: 18px 16px;
+        }
+        .nav a {
+            color: var(--bg);
+            text-decoration: none;
+            font-size: 15px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+        .nav a:hover {
+            border-bottom-color: var(--bg);
+        }
+
+        /* Демо-контент, чтобы было видно эффект «отодвигания» (можно удалить) */
+        main {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 40px 16px;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 align="center">Легкий. Просторный. Сдержанный.</h1>
+        <div class="bottom-line" id="bottomLine"></div>
+        <button class="menu-button" id="menuButton" type="button" aria-expanded="false">
+            <span class="burger" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="menu-button__text">Меню</span>
+        </button>
+    </header>
+
+    <main>
+        <p>Демо-текст: открытая навигация аккуратно отодвигает контент вниз, а не перекрывает его. Этот блок можно удалить.</p>
+    </main>
+
+    <script>
+        const menuButton = document.getElementById('menuButton');
+        const bottomLine = document.getElementById('bottomLine');
+        const menuLabel = menuButton.querySelector('.menu-button__text');
+
+        // Сами пункты меню: скрипт создаёт эти элементы
+        // и добавляет внутрь div.bottom-line
+        const MENU_ITEMS = [
+            { text: 'Главная', href: '#' },
+            { text: 'О проекте', href: '#' },
+            { text: 'Галерея', href: '#' },
+            { text: 'Контакты', href: '#' },
+        ];
+
+        let nav = null;
+        let fallbackTimer = null;
+
+        // Создание элементов и добавление ВНУТРЬ div.bottom-line
+        function buildNav() {
+            nav = document.createElement('nav');
+            nav.className = 'nav';
+            nav.id = 'siteNav';
+            nav.setAttribute('aria-label', 'Основная навигация');
+            menuButton.setAttribute('aria-controls', 'siteNav');
+
+            const ul = document.createElement('ul');
+            for (const item of MENU_ITEMS) {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = item.href;
+                a.textContent = item.text;
+                li.appendChild(a);
+                ul.appendChild(li);
+            }
+            nav.appendChild(ul);
+            bottomLine.appendChild(nav); /* <-- элементы добавляются в div.bottom-line */
+        }
+
+        // Удаление элементов из div.bottom-line
+        function removeNav() {
+            clearTimeout(fallbackTimer);
+            if (nav) {
+                nav.remove();
+                nav = null;
+            }
+        }
+
+        // Этап 1: блок начинает плавно раздвигаться
+        function openMenu() {
+            clearTimeout(fallbackTimer);
+            menuButton.setAttribute('aria-expanded', 'true');
+            menuLabel.textContent = 'Закрыть';
+            buildNav(); /* элементы уже в div, но пока скрыты */
+            bottomLine.classList.add('open');
+            /* высота открытого блока — ровно по контенту, а не фиксированная */
+            bottomLine.style.height = nav.offsetHeight + 'px';
+
+            /* Страховка, если transitionend не сработает */
+            fallbackTimer = setTimeout(() => bottomLine.classList.add('ready'), 600);
+        }
+
+        // Блок сдвигается обратно; элементы удаляются после сдвига
+        function closeMenu() {
+            clearTimeout(fallbackTimer);
+            menuButton.setAttribute('aria-expanded', 'false');
+            menuLabel.textContent = 'Меню';
+            bottomLine.classList.remove('ready');
+            bottomLine.classList.remove('open');
+            bottomLine.style.height = ''; /* возврат к 1px из CSS */
+        }
+
+        menuButton.addEventListener('click', () => {
+            bottomLine.classList.contains('open') ? closeMenu() : openMenu();
+        });
+
+        // Этап 2: блок раздвинулся до конца — показываем добавленные элементы
+        bottomLine.addEventListener('transitionend', (event) => {
+            if (event.target !== bottomLine || event.propertyName !== 'height') return;
+
+            if (bottomLine.classList.contains('open')) {
+                clearTimeout(fallbackTimer);
+                bottomLine.classList.add('ready');
+            } else {
+                removeNav(); /* блок сдвинулся — элементы удаляются из div */
+            }
+        });
+
+        // Закрытие после клика по ссылке
+        bottomLine.addEventListener('click', (event) => {
+            if (event.target.closest('.nav a')) closeMenu();
+        });
+
+        // Пересчёт высоты при изменении окна (пункты могут переехать на другую строку)
+        window.addEventListener('resize', () => {
+            if (nav && bottomLine.classList.contains('open')) {
+                bottomLine.style.height = nav.offsetHeight + 'px';
+            }
+        });
+    </script>
+</body>
+</html>
