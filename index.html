@@ -74,21 +74,22 @@
 
         section {
             display: flex;
+            position: relative;
             margin-top: 10px;
             border: 1px solid var(--fg);
             border-radius: 10px;
         }
-        section img {
+        section svg {
             border-radius: 10px 0 0 10px;
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 50%;
-            aspect-ratio: 1 / 1; /* квадрат — высота равна ширине */
-            object-fit: cover; /* заполняем квадрат без искажения пропорций */
+            height: 100%;
         }
-        
-        
 
         /* --- КЛАССЫ --- */
-        .content {width: 50%; padding: 0 5px;}
+        .content {width: 50%; margin-left: 50%; padding: 0 5px;}
         .content h2 {border-bottom: 1px solid var(--fg);}
 
         .bottom-line {
@@ -135,7 +136,7 @@
         }
         .theme-button {
             position: absolute;
-            right: 12px;
+            right: 2.5%;
             top: 0;
             display: flex;
             align-items: center;
@@ -231,13 +232,17 @@
             header h1 {
                 font-size: 28px;
             }
-            
+
             .content h2 {
-            	font-size: 14px;
+                font-size: 14px;
             }
 
             main {
                 width: 75%;
+            }
+            
+            .theme-button {
+        		right: 12.5%;
             }
         }
 
@@ -245,23 +250,27 @@
             header h1 {
                 font-size: 42px;
             }
-            
+
             .content h2 {
-				font-size: 21px;
-			}
+                font-size: 21px;
+            }
         }
 
         @media (min-width: 1025px) {
             header h1 {
                 font-size: 56px;
             }
-            
+
             .content h2 {
-            	font-size: 28px;
+                font-size: 28px;
             }
 
             main {
                 width: 50%;
+            }
+            
+            .theme-button {
+        		right: 25%;
             }
         }
 
@@ -270,12 +279,16 @@
                 font-size: 64px;
             }
 
-			.content h2 {
-				font-size: 32px;
-			}
+            .content h2 {
+                font-size: 32px;
+            }
 
             main {
                 width: 30%;
+            }
+            
+            .theme-button {
+        		right: 35%;
             }
         }
 
@@ -285,13 +298,14 @@
                 flex-direction: column;
             }
 
-            section img {
+            section svg {
+            	position: static;
                 width: 100%;
-                height: auto; /* квадрат сохраняется: 1:1 от полной ширины */
+                height: auto;
                 border-radius: 10px 10px 0 0;
             }
 
-            .content {width: 100%;}
+            .content {width: 100%; margin-left: 0;}
         }
     </style>
 </head>
@@ -319,7 +333,17 @@
 
     <main>
         <section>
-            <img src="https://avatars.mds.yandex.net/i?id=74f63fd7df35b1831f84e0c635405d58_l-9270532-images-thumbs&n=13" alt="Фото Леонида Эдуардовича Маковского" />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <!-- Circle face -->
+                <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="4"/>
+
+                <!-- Closed happy eyes -->
+                <path d="M28 44 Q34 36 40 44" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+                <path d="M60 44 Q66 36 72 44" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+
+                <!-- Smile -->
+                <path d="M32 60 Q50 76 68 60" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+            </svg>
             <div class="content">
                 <h2 align="center">Удобство</h2>
                 <p>Наше приложение имеет отличный баланс между простотой и функциональностью. Для этого мы разделили пользователей на "Мастеров" и "Обывателей". Мастера создают кирпичики, а обыватели из них создают свои пакеты.</p>
