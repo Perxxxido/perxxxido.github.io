@@ -54,36 +54,43 @@
             color: var(--fg);
         }
 
-		/* --- СЕМАНТИЧЕСКИЕ ТЕГИ --- */
+        /* --- СЕМАНТИЧЕСКИЕ ТЕГИ --- */
         header {
             width: 100%;
             min-height: 58px;
         }
         header h1 {
             margin: 5px 0px;
-            font-size: 36px;
+            font-size: 22px; /* база — самые маленькие экраны, дальше ступени вверх */
         }
-        
+
         main {
-        	display: grid;
-        	grid-template-columns: 1fr;
+            display: grid;
+            grid-template-columns: 1fr;
             width: 95%;
             margin: 0px auto;
             line-height: 1.6;
         }
-        
+
         section {
-        	display: flex;
-        	margin-top: 10px;
-        	border: 1px solid var(--fg);
-        	border-radius: 10px;
+            display: flex;
+            margin-top: 10px;
+            border: 1px solid var(--fg);
+            border-radius: 10px;
         }
         section img {
-        	border-radius: 10px 0 0 10px;
-        	width: 50%;
+            border-radius: 10px 0 0 10px;
+            width: 50%;
+            aspect-ratio: 1 / 1; /* квадрат — высота равна ширине */
+            object-fit: cover; /* заполняем квадрат без искажения пропорций */
         }
-		
-		/* --- КЛАССЫ --- */
+        
+        
+
+        /* --- КЛАССЫ --- */
+        .content {width: 50%; padding: 0 5px;}
+        .content h2 {border-bottom: 1px solid var(--fg);}
+
         .bottom-line {
             width: 100%;
             overflow: hidden; /* ничего не вылезает за панель */
@@ -218,57 +225,72 @@
         .nav a:hover {
             border-bottom-color: var(--bg);
         }
-        
-        /* --- МЕДИА-ЗАПРОСЫ ---*/
-        @media (min-width: 1400px) {
-			header h1 {
-				font-size: 64px;
+
+        /* --- МЕДИА-ЗАПРОСЫ (mobile-first: от узких к широким, без перекрытий) ---*/
+        @media (min-width: 481px) {
+            header h1 {
+                font-size: 28px;
+            }
+            
+            .content h2 {
+            	font-size: 14px;
+            }
+
+            main {
+                width: 75%;
+            }
+        }
+
+        @media (min-width: 769px) {
+            header h1 {
+                font-size: 42px;
+            }
+            
+            .content h2 {
+				font-size: 21px;
 			}
-			
-			main {
-				width: 30%;
+        }
+
+        @media (min-width: 1025px) {
+            header h1 {
+                font-size: 56px;
+            }
+            
+            .content h2 {
+            	font-size: 28px;
+            }
+
+            main {
+                width: 50%;
+            }
+        }
+
+        @media (min-width: 1401px) {
+            header h1 {
+                font-size: 64px;
+            }
+
+			.content h2 {
+				font-size: 32px;
 			}
-		}
-        
-        @media (max-width: 1400px) {
-			header h1 {
-				font-size: 56px;
-			}
-			
-			main {
-				width: 50%;
-			}
-		}
-		
-		@media (max-width: 1024px) {
-			header h1 {
-				font-size: 42px;
-			}
-			
-			main {
-				width: 75%;
-			}
-		}
-		
-		@media (max-width: 768px) {
-			header h1 {
-				font-size: 28px;
-			}
-			
-			main {
-				width: 75%;
-			}
-		}
-		
-		@media (max-width: 480px) {
-			h1 {
-				font-size: 22px;
-			}
-			
-			main {
-				width: 95%;
-			}
-		}
+
+            main {
+                width: 30%;
+            }
+        }
+
+        /* На узких экранах карточка складывается в колонку */
+        @media (max-width: 768px) {
+            section {
+                flex-direction: column;
+            }
+
+            section img {
+                width: 100%;
+                height: auto; /* квадрат сохраняется: 1:1 от полной ширины */
+                border-radius: 10px 10px 0 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -295,10 +317,11 @@
 
     <main>
         <section>
-        	<img src="https://avatars.mds.yandex.net/i?id=74f63fd7df35b1831f84e0c635405d58_l-9270532-images-thumbs&n=13" alt="Фото Леонида Эдуардовича Маковского" />
-        	<div>
-        		HELLO!
-        	</div>
+            <img src="https://avatars.mds.yandex.net/i?id=74f63fd7df35b1831f84e0c635405d58_l-9270532-images-thumbs&n=13" alt="Фото Леонида Эдуардовича Маковского" />
+            <div class="content">
+                <h2 align="center">Удобство</h2>
+                <p>Наше приложение имеет отличный баланс между простотой и функциональностью. Для этого мы разделили пользователей на "Мастеров" и "Обывателей". Мастера создают кирпичики, а обыватели из них создают свои пакеты.</p>
+            </div>
         </section>
     </main>
 
