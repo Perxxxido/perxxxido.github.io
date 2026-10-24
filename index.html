@@ -54,19 +54,36 @@
             color: var(--fg);
         }
 
+		/* --- СЕМАНТИЧЕСКИЕ ТЕГИ --- */
         header {
             width: 100%;
-            /* было height: 58px — теперь шапка может расти, когда меню открыто */
             min-height: 58px;
         }
         header h1 {
             margin: 5px 0px;
             font-size: 36px;
         }
-
-        /* Блок «линии» — он же раскрывающийся контейнер.
-           Сначала он сам плавно раздвигается (0fr → 1fr),
-           и только потом внутри появляются пункты меню. */
+        
+        main {
+        	display: grid;
+        	grid-template-columns: 1fr;
+            width: 95%;
+            margin: 0px auto;
+            line-height: 1.6;
+        }
+        
+        section {
+        	display: flex;
+        	margin-top: 10px;
+        	border: 1px solid var(--fg);
+        	border-radius: 10px;
+        }
+        section img {
+        	border-radius: 10px 0 0 10px;
+        	width: 50%;
+        }
+		
+		/* --- КЛАССЫ --- */
         .bottom-line {
             width: 100%;
             overflow: hidden; /* ничего не вылезает за панель */
@@ -74,8 +91,6 @@
             height: 1px;
             background: var(--fg);
         }
-        /* Высоту открытого блока скрипт задаёт по фактическому контенту,
-           поэтому пункты не потеряются ни на какой ширине экрана */
 
         /* ===== Кнопка меню: «язычок», свисающий с линии ===== */
         .menu-button {
@@ -203,19 +218,35 @@
         .nav a:hover {
             border-bottom-color: var(--bg);
         }
-
-        /* Демо-контент, чтобы было видно эффект «отодвигания» (можно удалить) */
-        main {
-            max-width: 640px;
-            margin: 0 auto;
-            padding: 40px 16px;
-            line-height: 1.6;
-            opacity: 0.8;
-        }
         
-        @media (max-width: 1024px) {
+        /* --- МЕДИА-ЗАПРОСЫ ---*/
+        @media (min-width: 1400px) {
+			header h1 {
+				font-size: 64px;
+			}
+			
+			main {
+				width: 30%;
+			}
+		}
+        
+        @media (max-width: 1400px) {
+			header h1 {
+				font-size: 56px;
+			}
+			
+			main {
+				width: 50%;
+			}
+		}
+		
+		@media (max-width: 1024px) {
 			header h1 {
 				font-size: 42px;
+			}
+			
+			main {
+				width: 75%;
 			}
 		}
 		
@@ -223,11 +254,19 @@
 			header h1 {
 				font-size: 28px;
 			}
+			
+			main {
+				width: 75%;
+			}
 		}
 		
 		@media (max-width: 480px) {
 			h1 {
-				font-size: 16px;
+				font-size: 22px;
+			}
+			
+			main {
+				width: 95%;
 			}
 		}
     </style>
@@ -255,7 +294,12 @@
     </header>
 
     <main>
-        <p>Демо-текст: открытая навигация аккуратно отодвигает контент вниз, а не перекрывает его. Этот блок можно удалить.</p>
+        <section>
+        	<img src="https://avatars.mds.yandex.net/i?id=74f63fd7df35b1831f84e0c635405d58_l-9270532-images-thumbs&n=13" alt="Фото Леонида Эдуардовича Маковского" />
+        	<div>
+        		HELLO!
+        	</div>
+        </section>
     </main>
 
     <script>
@@ -268,8 +312,6 @@
         const MENU_ITEMS = [
             { text: 'Главная', href: '#' },
             { text: 'О проекте', href: '#' },
-            { text: 'Галерея', href: '#' },
-            { text: 'Контакты', href: '#' },
         ];
 
         let nav = null;
