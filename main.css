@@ -1,0 +1,296 @@
+/* Тема по умолчанию — тёмная; светлая включается медиазапросом
+   (follow the system) или атрибутом data-theme (ручной выбор) */
+:root {
+    --fg: #f0f0f0;
+    --bg: #0f0f0f;
+    color-scheme: dark;
+}
+/* Светлая тема — если система предпочитает её и пользователь не выбирал вручную */
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme]) {
+        --fg: #141414;
+        --bg: #f2f2f2;
+        color-scheme: light;
+    }
+}
+/* Ручной выбор перекрывает систему */
+:root[data-theme="dark"] {
+    --fg: #f0f0f0;
+    --bg: #0f0f0f;
+    color-scheme: dark;
+}
+:root[data-theme="light"] {
+    --fg: #141414;
+    --bg: #f2f2f2;
+    color-scheme: light;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    color: var(--fg);
+    transition: background 1s ease;
+    font-family: "Noto Serif", serif;
+}
+
+/* --- СЕМАНТИЧЕСКИЕ ТЕГИ --- */
+header {
+    width: 100%;
+    min-height: 56px;
+}
+header h1 {
+    margin: 5px 0px;
+    font-size: 22px;
+	text-align: center;
+	font-weight: 300;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 95%;
+    margin: 0px auto;
+    line-height: 1.6;
+}
+
+section {
+    display: flex;
+    position: relative;
+    margin-top: 10px;
+    border: 1px solid var(--fg);
+    border-radius: 10px;
+    font-weight: 300;
+}
+section svg {
+    border-radius: 10px 0 0 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+}
+
+/* --- КЛАССЫ --- */
+.content {width: 50%; margin-left: 50%; padding: 0 5px;}
+.content h2 {border-bottom: 1px solid var(--fg); text-align: center; font-weight: 300;}
+
+.bottom-line {
+    width: 100%;
+    overflow: hidden; /* ничего не вылезает за панель */
+    transition: height 0.45s ease, background 1s ease;
+    height: 1px;
+    background: var(--fg);
+}
+
+/* ===== Кнопка меню: «язычок», свисающий с линии ===== */
+.menu-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 7px 16px;
+
+    background: var(--bg);
+    color: var(--fg);
+    border: 1px solid var(--fg);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+
+    font: inherit;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    cursor: pointer;
+    transition: background 1s ease, opacity 0.2s ease;
+}
+.menu-button:focus-visible {
+    outline: 1px dashed var(--fg);
+    outline-offset: 2px;
+}
+
+/* ===== Ряд кнопок под линией: меню по центру, тема — справа с краю ===== */
+.header-controls {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.theme-button {
+    position: absolute;
+    right: 2.5%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+
+    background: var(--bg);
+    color: var(--fg);
+    border: 1px solid var(--fg);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+
+    cursor: pointer;
+    transition: background 1s ease, opacity 0.2s ease;
+}
+.theme-button:focus-visible {
+    outline: 1px dashed var(--fg);
+    outline-offset: 2px;
+}
+.theme-button .icon {
+    display: block;
+}
+/* В тёмной теме показываем солнце (переключит на светлую), в светлой — луну */
+.theme-button .icon-moon { display: none; }
+:root[data-theme="light"] .theme-button .icon-sun { display: none; }
+:root[data-theme="light"] .theme-button .icon-moon { display: block; }
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme]) .theme-button .icon-sun { display: none; }
+    :root:not([data-theme]) .theme-button .icon-moon { display: block; }
+}
+
+/* Иконка-бургер из трёх полосок */
+.burger {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.burger span {
+    width: 18px;
+    height: 2px;
+    background: var(--fg);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+/* Когда меню открыто — полоски складываются в крестик */
+.menu-button[aria-expanded="true"] .burger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.menu-button[aria-expanded="true"] .burger span:nth-child(2) { opacity: 0; }
+.menu-button[aria-expanded="true"] .burger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ===== Навигация внутри блока линии ===== */
+.nav {
+    min-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+.bottom-line.ready .nav {
+    visibility: visible;
+}
+/* Пункты появляются только когда блок уже раздвинулся */
+.nav li {
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.bottom-line.ready .nav li {
+    opacity: 1;
+    transform: translateY(0);
+}
+.bottom-line.ready .nav li:nth-child(1) { transition-delay: 0s; }
+.bottom-line.ready .nav li:nth-child(2) { transition-delay: 0.07s; }
+.bottom-line.ready .nav li:nth-child(3) { transition-delay: 0.14s; }
+.bottom-line.ready .nav li:nth-child(4) { transition-delay: 0.21s; }
+.nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 36px;
+    padding: 18px 16px;
+}
+.nav a {
+    color: var(--bg);
+    text-decoration: none;
+    font-size: 15px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+.nav a:hover {
+    border-bottom-color: var(--bg);
+}
+
+/* --- МЕДИА-ЗАПРОСЫ (mobile-first: от узких к широким, без перекрытий) ---*/
+@media (min-width: 481px) {
+    header h1 {
+        font-size: 28px;
+    }
+
+    .content h2 {
+        font-size: 14px;
+    }
+
+    main {
+        width: 75%;
+    }
+    
+    .theme-button {
+		right: 12.5%;
+    }
+}
+
+@media (min-width: 769px) {
+    header h1 {
+        font-size: 42px;
+    }
+
+    .content h2 {
+        font-size: 21px;
+    }
+}
+
+@media (min-width: 1025px) {
+    header h1 {
+        font-size: 56px;
+    }
+
+    .content h2 {
+        font-size: 28px;
+    }
+
+    main {
+        width: 50%;
+    }
+    
+    .theme-button {
+		right: 25%;
+    }
+}
+
+@media (min-width: 1401px) {
+    header h1 {
+        font-size: 64px;
+    }
+
+    .content h2 {
+        font-size: 32px;
+    }
+
+    main {
+        width: 30%;
+    }
+    
+    .theme-button {
+		right: 35%;
+    }
+}
+
+/* На узких экранах карточка складывается в колонку */
+@media (max-width: 768px) {
+    section {
+        flex-direction: column;
+    }
+
+    section svg {
+    	position: static;
+        width: 100%;
+        height: auto;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .content {width: 100%; margin-left: 0;}
+}
