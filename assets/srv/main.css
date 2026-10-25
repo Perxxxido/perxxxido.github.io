@@ -37,6 +37,18 @@ body {
     transition: background 1s ease;
     font-family: "Noto Serif", serif;
 }
+body ::selection {
+	background: var(--fg);
+	color: var(--bg);
+}
+body ::-moz-selection {
+	background: var(--fg);
+	color: var(--bg);
+}
+body ::-webkit-selection {
+	background: var(--fg);
+	color: var(--bg);
+}
 
 /* --- СЕМАНТИЧЕСКИЕ ТЕГИ --- */
 header {
